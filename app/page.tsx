@@ -32,14 +32,22 @@ function FadeUp({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Section divider                                                    */
+/*  Section divider — 1px rgba(255,255,255,0.08)                      */
 /* ------------------------------------------------------------------ */
 function Divider() {
-  return <div className="w-full" style={{ height: 1, backgroundColor: "rgba(255,255,255,0.08)" }} />;
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: 1,
+        backgroundColor: "rgba(255,255,255,0.08)",
+      }}
+    />
+  );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Nav  — frosted glass, sticky                                       */
+/*  Nav                                                                */
 /* ------------------------------------------------------------------ */
 function Nav() {
   return (
@@ -52,10 +60,11 @@ function Nav() {
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 h-[64px] flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: 64 }}>
         <a
           href="#"
-          className="font-[family-name:var(--font-playfair)] text-xl tracking-[0.04em] text-white"
+          className="font-[family-name:var(--font-playfair)] text-xl text-white"
+          style={{ letterSpacing: "0.04em" }}
         >
           REFRESH
         </a>
@@ -108,25 +117,33 @@ function Nav() {
 /* ------------------------------------------------------------------ */
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 px-6" style={{ backgroundColor: "#0a0a0a" }}>
-      <div className="relative text-center max-w-4xl mx-auto">
+    <section
+      className="relative min-h-screen flex items-center justify-center px-6"
+      style={{ background: "#0a0a0a", paddingTop: 64 }}
+    >
+      <div className="text-center max-w-4xl mx-auto">
         <FadeUp>
-          <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] mb-8">
+          <p className="text-[13px] uppercase text-[#58b4e6] mb-8" style={{ letterSpacing: "0.3em" }}>
             Mobile Detailing &bull; Chattanooga, TN
           </p>
         </FadeUp>
 
         <FadeUp delay={0.1}>
           <h1
-            className="font-[family-name:var(--font-playfair)] font-normal uppercase leading-[0.95] mb-3"
-            style={{ fontSize: "clamp(4rem, 12vw, 9rem)", letterSpacing: "-0.02em" }}
+            className="font-[family-name:var(--font-playfair)] font-normal uppercase"
+            style={{
+              fontSize: "clamp(4rem, 12vw, 9rem)",
+              letterSpacing: "-0.02em",
+              lineHeight: 0.95,
+              marginBottom: 12,
+            }}
           >
             Refresh
           </h1>
         </FadeUp>
 
         <FadeUp delay={0.15}>
-          <p className="text-[13px] md:text-[15px] tracking-[0.35em] uppercase text-[#999] mb-10">
+          <p className="text-[#999] uppercase mb-10" style={{ fontSize: 14, letterSpacing: "0.35em" }}>
             Detailing Service
           </p>
         </FadeUp>
@@ -140,6 +157,7 @@ function Hero() {
 
         <FadeUp delay={0.35}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* Primary: white bg, dark text */}
             <a
               href="#contact"
               className="inline-flex items-center justify-center font-semibold text-[15px] transition-opacity duration-200 hover:opacity-[0.88]"
@@ -152,15 +170,18 @@ function Hero() {
             >
               Book Your Detail
             </a>
+            {/* Secondary: transparent, light blue border */}
             <a
               href="tel:4239334784"
-              className="inline-flex items-center justify-center font-medium text-[15px] text-[#58b4e6] transition-opacity duration-200 hover:opacity-[0.7]"
+              className="inline-flex items-center justify-center font-medium text-[15px] text-[#58b4e6] transition-all duration-200"
               style={{
-                border: "1px solid #58b4e6",
+                backgroundColor: "transparent",
+                border: "1px solid rgba(88,180,230,0.3)",
                 borderRadius: 980,
                 padding: "18px 36px",
-                backgroundColor: "transparent",
               }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#58b4e6"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(88,180,230,0.3)"; }}
             >
               Call Now — (423) 933-4784
             </a>
@@ -180,7 +201,7 @@ const services = [
     description:
       "Sedans, SUVs, trucks — full interior and exterior details that make your daily driver feel brand new.",
     icon: (
-      <svg className="w-10 h-10 text-white/[0.15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+      <svg className="w-10 h-10" style={{ color: "rgba(255,255,255,0.15)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25m-4.5 0V5.625c0-.621-.504-1.125-1.125-1.125H5.25c-.621 0-1.125.504-1.125 1.125v12m10.125-9h3.375" />
       </svg>
     ),
@@ -190,7 +211,7 @@ const services = [
     description:
       "Road trip ready. We handle the big rigs — full wash, wax, and interior deep clean for your home on wheels.",
     icon: (
-      <svg className="w-10 h-10 text-white/[0.15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+      <svg className="w-10 h-10" style={{ color: "rgba(255,255,255,0.15)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218" />
       </svg>
     ),
@@ -200,7 +221,7 @@ const services = [
     description:
       "From pontoons to ski boats — hull cleaning, interior refresh, and UV protection to keep you lake-ready.",
     icon: (
-      <svg className="w-10 h-10 text-white/[0.15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+      <svg className="w-10 h-10" style={{ color: "rgba(255,255,255,0.15)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m0 0a8.961 8.961 0 0 1 6.075 2.372L21 10.5H3l2.925-2.878A8.961 8.961 0 0 1 12 5.25Zm-9 15c1.5 1.5 3.5 2.25 6 2.25s4.5-.75 6-2.25c1.5 1.5 3 2.25 3 2.25M3 20.25s1.5-.75 3-2.25" />
       </svg>
     ),
@@ -209,10 +230,10 @@ const services = [
 
 function Services() {
   return (
-    <section id="services" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
+    <section id="services" style={{ padding: "120px 24px", background: "#0a0a0a" }}>
       <div className="max-w-6xl mx-auto">
         <FadeUp>
-          <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] text-center mb-5">
+          <p className="text-[13px] uppercase text-[#58b4e6] text-center mb-5" style={{ letterSpacing: "0.3em" }}>
             What We Detail
           </p>
         </FadeUp>
@@ -226,7 +247,7 @@ function Services() {
           {services.map((service, i) => (
             <FadeUp key={service.title} delay={0.1 * (i + 1)}>
               <div
-                className="group overflow-hidden transition-all duration-300"
+                className="overflow-hidden transition-all duration-300"
                 style={{
                   backgroundColor: "#141414",
                   border: "1px solid rgba(255,255,255,0.08)",
@@ -241,14 +262,15 @@ function Services() {
                   e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
                 }}
               >
-                {/* Image placeholder area */}
+                {/* Image placeholder */}
                 <div
-                  className="h-48 flex items-center justify-center"
-                  style={{ backgroundColor: "#1a1a1a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+                  className="flex items-center justify-center"
+                  style={{ height: 192, backgroundColor: "#1a1a1a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
                 >
                   {service.icon}
                 </div>
-                <div className="p-8">
+                {/* Card body — p-7 to prevent text overflow */}
+                <div style={{ padding: 28 }}>
                   <h3 className="font-[family-name:var(--font-playfair)] text-2xl mb-3">
                     {service.title}
                   </h3>
@@ -266,7 +288,7 @@ function Services() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  How It Works  — numbered circles with connecting line              */
+/*  How It Works                                                       */
 /* ------------------------------------------------------------------ */
 const steps = [
   {
@@ -291,10 +313,10 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section id="how-it-works" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
+    <section id="how-it-works" style={{ padding: "120px 24px", background: "#0a0a0a" }}>
       <div className="max-w-6xl mx-auto">
         <FadeUp>
-          <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] text-center mb-5">
+          <p className="text-[13px] uppercase text-[#58b4e6] text-center mb-5" style={{ letterSpacing: "0.3em" }}>
             Simple Process
           </p>
         </FadeUp>
@@ -323,10 +345,7 @@ function HowItWorks() {
                 <div className="text-center">
                   <div
                     className="relative z-10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-8"
-                    style={{
-                      border: "2px solid #58b4e6",
-                      backgroundColor: "#0a0a0a",
-                    }}
+                    style={{ border: "2px solid #58b4e6", backgroundColor: "#0a0a0a" }}
                   >
                     <span className="font-[family-name:var(--font-playfair)] text-lg text-[#58b4e6]">
                       {step.number}
@@ -349,14 +368,14 @@ function HowItWorks() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Why Refresh (About) — NO stats section                             */
+/*  Why Refresh (About)                                                */
 /* ------------------------------------------------------------------ */
 function WhyRefresh() {
   return (
-    <section id="about" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
+    <section id="about" style={{ padding: "120px 24px", background: "#0a0a0a" }}>
       <div className="max-w-3xl mx-auto text-center">
         <FadeUp>
-          <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] mb-5">
+          <p className="text-[13px] uppercase text-[#58b4e6] mb-5" style={{ letterSpacing: "0.3em" }}>
             Why Refresh
           </p>
         </FadeUp>
@@ -366,7 +385,7 @@ function WhyRefresh() {
           </h2>
         </FadeUp>
         <FadeUp delay={0.2}>
-          <p className="text-lg text-[#999] leading-[1.8] mb-8">
+          <p className="text-lg text-[#999] mb-8" style={{ lineHeight: 1.8 }}>
             Refresh Detailing Service was started by Louis Ramirez with a simple
             idea: you shouldn&apos;t have to rearrange your day to get your car
             cleaned. We bring professional-grade equipment and premium products
@@ -375,7 +394,7 @@ function WhyRefresh() {
           </p>
         </FadeUp>
         <FadeUp delay={0.3}>
-          <p className="text-lg text-[#999] leading-[1.8]">
+          <p className="text-lg text-[#999]" style={{ lineHeight: 1.8 }}>
             Based in Chattanooga, TN, we take pride in treating every vehicle
             like it&apos;s our own. From a daily commuter that needs some love to
             an RV getting prepped for the season — we&apos;ve got you covered.
@@ -422,14 +441,7 @@ function Contact() {
 
       if (error) throw error;
       setStatus("success");
-      setFormData({
-        name: "",
-        phone: "",
-        vehicle_type: "",
-        service: "",
-        address: "",
-        notes: "",
-      });
+      setFormData({ name: "", phone: "", vehicle_type: "", service: "", address: "", notes: "" });
     } catch {
       setStatus("error");
     }
@@ -450,38 +462,34 @@ function Contact() {
   const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     e.currentTarget.style.borderColor = "#58b4e6";
   };
-
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
   };
 
   if (status === "success") {
     return (
-      <section id="contact" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
+      <section id="contact" style={{ padding: "120px 24px", background: "#0a0a0a" }}>
         <div className="max-w-xl mx-auto text-center">
           <FadeUp>
             <div style={{ backgroundColor: "#141414", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: 64 }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8" style={{ backgroundColor: "rgba(88,180,230,0.1)" }}>
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8"
+                style={{ backgroundColor: "rgba(88,180,230,0.1)" }}
+              >
                 <svg className="w-8 h-8 text-[#58b4e6]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                 </svg>
               </div>
-              <h3 className="font-[family-name:var(--font-playfair)] text-2xl mb-4">
-                Request Received!
-              </h3>
+              <h3 className="font-[family-name:var(--font-playfair)] text-2xl mb-4">Request Received!</h3>
               <p className="text-[#999] mb-8 leading-relaxed">
-                We&apos;ll be in touch shortly to confirm your detail. If you
-                need us sooner, give us a call.
+                We&apos;ll be in touch shortly to confirm your detail. If you need us sooner, give us a call.
               </p>
               <a
                 href="tel:4239334784"
-                className="inline-flex items-center justify-center font-medium text-[#58b4e6] transition-opacity duration-200 hover:opacity-[0.7]"
-                style={{
-                  border: "1px solid #58b4e6",
-                  borderRadius: 980,
-                  padding: "14px 28px",
-                  backgroundColor: "transparent",
-                }}
+                className="inline-flex items-center justify-center font-medium text-[#58b4e6] transition-all duration-200"
+                style={{ backgroundColor: "transparent", border: "1px solid rgba(88,180,230,0.3)", borderRadius: 980, padding: "14px 28px" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#58b4e6"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(88,180,230,0.3)"; }}
               >
                 (423) 933-4784
               </a>
@@ -493,10 +501,10 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
+    <section id="contact" style={{ padding: "120px 24px", background: "#0a0a0a" }}>
       <div className="max-w-2xl mx-auto">
         <FadeUp>
-          <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] text-center mb-5">
+          <p className="text-[13px] uppercase text-[#58b4e6] text-center mb-5" style={{ letterSpacing: "0.3em" }}>
             Get Started
           </p>
         </FadeUp>
@@ -507,67 +515,27 @@ function Contact() {
         </FadeUp>
         <FadeUp delay={0.2}>
           <p className="text-[#999] text-center mb-14 text-[15px]">
-            Fill out the form and we&apos;ll reach out to confirm your
-            appointment. Or call us directly at{" "}
-            <a href="tel:4239334784" className="text-[#58b4e6] hover:underline">
-              (423) 933-4784
-            </a>
-            .
+            Fill out the form and we&apos;ll reach out to confirm your appointment. Or call us directly at{" "}
+            <a href="tel:4239334784" className="text-[#58b4e6] hover:underline">(423) 933-4784</a>.
           </p>
         </FadeUp>
 
         <FadeUp delay={0.3}>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid md:grid-cols-2 gap-5">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                style={inputStyle}
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                required
-                value={formData.phone}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                style={inputStyle}
-              />
+              <input type="text" name="name" placeholder="Your Name" required value={formData.name} onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} style={inputStyle} />
+              <input type="tel" name="phone" placeholder="Phone Number" required value={formData.phone} onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} style={inputStyle} />
             </div>
 
             <div className="grid md:grid-cols-2 gap-5">
-              <select
-                name="vehicle_type"
-                required
-                value={formData.vehicle_type}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                style={{ ...inputStyle, color: formData.vehicle_type ? "#f5f5f7" : "#555" }}
-              >
+              <select name="vehicle_type" required value={formData.vehicle_type} onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} style={{ ...inputStyle, color: formData.vehicle_type ? "#f5f5f7" : "#555" }}>
                 <option value="" disabled>Vehicle Type</option>
                 <option value="Sedan">Sedan</option>
                 <option value="SUV/Truck">SUV / Truck</option>
                 <option value="RV">RV</option>
                 <option value="Boat">Boat</option>
               </select>
-              <select
-                name="service"
-                required
-                value={formData.service}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                style={{ ...inputStyle, color: formData.service ? "#f5f5f7" : "#555" }}
-              >
+              <select name="service" required value={formData.service} onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} style={{ ...inputStyle, color: formData.service ? "#f5f5f7" : "#555" }}>
                 <option value="" disabled>Service Needed</option>
                 <option value="Full Detail">Full Detail</option>
                 <option value="Exterior Only">Exterior Only</option>
@@ -576,47 +544,33 @@ function Contact() {
               </select>
             </div>
 
-            <input
-              type="text"
-              name="address"
-              placeholder="Service Address (where should we come?)"
-              required
-              value={formData.address}
-              onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              style={inputStyle}
-            />
+            <input type="text" name="address" placeholder="Service Address (where should we come?)" required value={formData.address} onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} style={inputStyle} />
 
-            <textarea
-              name="notes"
-              placeholder="Any notes? (optional)"
-              rows={4}
-              value={formData.notes}
-              onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              style={{ ...inputStyle, resize: "none" as const }}
-            />
+            <textarea name="notes" placeholder="Any notes? (optional)" rows={4} value={formData.notes} onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} style={{ ...inputStyle, resize: "none" as const }} />
 
-            <button
-              type="submit"
-              disabled={status === "submitting"}
-              className="w-full font-semibold text-[15px] transition-opacity duration-200 hover:opacity-[0.88] disabled:opacity-60 disabled:cursor-not-allowed"
-              style={{
-                backgroundColor: "#f5f5f7",
-                color: "#0a0a0a",
-                borderRadius: 980,
-                padding: "18px 36px",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              {status === "submitting" ? "Sending..." : "Request a Quote"}
-            </button>
+            {/* Button: NOT full-width, max-width 320px, centered, pill */}
+            <div className="flex justify-center" style={{ paddingTop: 8 }}>
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="font-semibold text-[15px] transition-opacity duration-200 hover:opacity-[0.88] disabled:opacity-60 disabled:cursor-not-allowed"
+                style={{
+                  backgroundColor: "#f5f5f7",
+                  color: "#0a0a0a",
+                  borderRadius: 980,
+                  padding: "18px 36px",
+                  border: "none",
+                  cursor: "pointer",
+                  maxWidth: 320,
+                  width: "100%",
+                }}
+              >
+                {status === "submitting" ? "Sending..." : "Request a Quote"}
+              </button>
+            </div>
 
             {status === "error" && (
-              <p className="text-red-400 text-sm text-center pt-2">
+              <p className="text-red-400 text-sm text-center" style={{ paddingTop: 8 }}>
                 Something went wrong. Please try again or call us directly.
               </p>
             )}
@@ -628,21 +582,17 @@ function Contact() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Footer  — minimal                                                  */
+/*  Footer                                                             */
 /* ------------------------------------------------------------------ */
 function Footer() {
   return (
-    <footer className="py-16 px-6" style={{ backgroundColor: "#0a0a0a" }}>
+    <footer style={{ padding: "64px 24px", background: "#0a0a0a" }}>
       <div className="max-w-6xl mx-auto text-center">
-        <p className="font-[family-name:var(--font-playfair)] text-lg tracking-[0.06em] uppercase mb-3">
+        <p className="font-[family-name:var(--font-playfair)] text-lg uppercase mb-3" style={{ letterSpacing: "0.06em" }}>
           Refresh
         </p>
-        <p className="text-[13px] text-[#666] mb-8">
-          Chattanooga, TN
-        </p>
-        <p className="text-[12px] text-[#444]">
-          &copy; 2026 Refresh Detailing Service
-        </p>
+        <p className="text-[13px] text-[#666] mb-8">Chattanooga, TN</p>
+        <p className="text-[12px] text-[#444]">&copy; 2026 Refresh Detailing Service</p>
       </div>
     </footer>
   );
@@ -653,9 +603,9 @@ function Footer() {
 /* ------------------------------------------------------------------ */
 export default function Home() {
   return (
-    <>
+    <div style={{ background: "#0a0a0a", minHeight: "100vh" }}>
       <Nav />
-      <main>
+      <main style={{ background: "#0a0a0a" }}>
         <Hero />
         <Divider />
         <Services />
@@ -668,6 +618,6 @@ export default function Home() {
         <Divider />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
