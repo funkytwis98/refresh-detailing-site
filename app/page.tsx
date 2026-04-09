@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 
 /* ------------------------------------------------------------------ */
-/*  Fade-up animation wrapper  (threshold ~0.15)                      */
+/*  Fade-up animation wrapper  (threshold 0.15)                       */
 /* ------------------------------------------------------------------ */
 function FadeUp({
   children,
@@ -32,14 +32,31 @@ function FadeUp({
 }
 
 /* ------------------------------------------------------------------ */
+/*  Section divider                                                    */
+/* ------------------------------------------------------------------ */
+function Divider() {
+  return <div className="w-full" style={{ height: 1, backgroundColor: "rgba(255,255,255,0.08)" }} />;
+}
+
+/* ------------------------------------------------------------------ */
 /*  Nav  — frosted glass, sticky                                       */
 /* ------------------------------------------------------------------ */
 function Nav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]"
-      style={{ backdropFilter: "saturate(180%) blur(20px)", WebkitBackdropFilter: "saturate(180%) blur(20px)", backgroundColor: "rgba(10,10,10,0.72)" }}>
+    <nav
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        backgroundColor: "rgba(10,10,10,0.8)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+      }}
+    >
       <div className="max-w-6xl mx-auto px-6 h-[64px] flex items-center justify-between">
-        <a href="#" className="font-[family-name:var(--font-playfair)] text-xl tracking-[0.04em] text-white">
+        <a
+          href="#"
+          className="font-[family-name:var(--font-playfair)] text-xl tracking-[0.04em] text-white"
+        >
           REFRESH
         </a>
 
@@ -56,8 +73,13 @@ function Nav() {
           ))}
           <a
             href="#contact"
-            className="text-[13px] bg-[#58b4e6] text-[#0a0a0a] px-6 py-2 font-semibold hover:bg-[#3a8fbf] transition-colors duration-200"
-            style={{ borderRadius: 980 }}
+            className="text-[13px] font-semibold transition-opacity duration-200 hover:opacity-[0.88]"
+            style={{
+              backgroundColor: "#f5f5f7",
+              color: "#0a0a0a",
+              borderRadius: 980,
+              padding: "8px 20px",
+            }}
           >
             Book Now
           </a>
@@ -66,8 +88,13 @@ function Nav() {
         {/* Mobile: just Book Now */}
         <a
           href="#contact"
-          className="md:hidden text-[13px] bg-[#58b4e6] text-[#0a0a0a] px-6 py-2 font-semibold hover:bg-[#3a8fbf] transition-colors duration-200"
-          style={{ borderRadius: 980 }}
+          className="md:hidden text-[13px] font-semibold transition-opacity duration-200 hover:opacity-[0.88]"
+          style={{
+            backgroundColor: "#f5f5f7",
+            color: "#0a0a0a",
+            borderRadius: 980,
+            padding: "8px 20px",
+          }}
         >
           Book Now
         </a>
@@ -77,14 +104,11 @@ function Nav() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Hero  — massive REFRESH heading                                    */
+/*  Hero                                                               */
 /* ------------------------------------------------------------------ */
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 px-6">
-      {/* Subtle radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(88,180,230,0.06)_0%,_transparent_60%)]" />
-
+    <section className="relative min-h-screen flex items-center justify-center pt-16 px-6" style={{ backgroundColor: "#0a0a0a" }}>
       <div className="relative text-center max-w-4xl mx-auto">
         <FadeUp>
           <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] mb-8">
@@ -118,15 +142,25 @@ function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center bg-[#58b4e6] text-[#0a0a0a] px-10 py-4 font-semibold text-[15px] hover:bg-[#3a8fbf] transition-colors duration-200"
-              style={{ borderRadius: 980 }}
+              className="inline-flex items-center justify-center font-semibold text-[15px] transition-opacity duration-200 hover:opacity-[0.88]"
+              style={{
+                backgroundColor: "#f5f5f7",
+                color: "#0a0a0a",
+                borderRadius: 980,
+                padding: "18px 36px",
+              }}
             >
               Book Your Detail
             </a>
             <a
               href="tel:4239334784"
-              className="inline-flex items-center justify-center border border-white/15 text-white px-10 py-4 font-medium text-[15px] hover:bg-white/[0.05] transition-colors duration-200"
-              style={{ borderRadius: 980 }}
+              className="inline-flex items-center justify-center font-medium text-[15px] text-[#58b4e6] transition-opacity duration-200 hover:opacity-[0.7]"
+              style={{
+                border: "1px solid #58b4e6",
+                borderRadius: 980,
+                padding: "18px 36px",
+                backgroundColor: "transparent",
+              }}
             >
               Call Now — (423) 933-4784
             </a>
@@ -138,7 +172,7 @@ function Hero() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Services  — elevated cards with image placeholder + hover lift     */
+/*  Services                                                           */
 /* ------------------------------------------------------------------ */
 const services = [
   {
@@ -146,7 +180,7 @@ const services = [
     description:
       "Sedans, SUVs, trucks — full interior and exterior details that make your daily driver feel brand new.",
     icon: (
-      <svg className="w-10 h-10 text-[#58b4e6]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+      <svg className="w-10 h-10 text-white/[0.15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25m-4.5 0V5.625c0-.621-.504-1.125-1.125-1.125H5.25c-.621 0-1.125.504-1.125 1.125v12m10.125-9h3.375" />
       </svg>
     ),
@@ -156,7 +190,7 @@ const services = [
     description:
       "Road trip ready. We handle the big rigs — full wash, wax, and interior deep clean for your home on wheels.",
     icon: (
-      <svg className="w-10 h-10 text-[#58b4e6]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+      <svg className="w-10 h-10 text-white/[0.15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218" />
       </svg>
     ),
@@ -166,7 +200,7 @@ const services = [
     description:
       "From pontoons to ski boats — hull cleaning, interior refresh, and UV protection to keep you lake-ready.",
     icon: (
-      <svg className="w-10 h-10 text-[#58b4e6]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
+      <svg className="w-10 h-10 text-white/[0.15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m0 0a8.961 8.961 0 0 1 6.075 2.372L21 10.5H3l2.925-2.878A8.961 8.961 0 0 1 12 5.25Zm-9 15c1.5 1.5 3.5 2.25 6 2.25s4.5-.75 6-2.25c1.5 1.5 3 2.25 3 2.25M3 20.25s1.5-.75 3-2.25" />
       </svg>
     ),
@@ -175,7 +209,7 @@ const services = [
 
 function Services() {
   return (
-    <section id="services" className="py-[120px] md:py-[140px] px-6">
+    <section id="services" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
       <div className="max-w-6xl mx-auto">
         <FadeUp>
           <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] text-center mb-5">
@@ -191,9 +225,27 @@ function Services() {
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <FadeUp key={service.title} delay={0.1 * (i + 1)}>
-              <div className="group bg-[#141414] border border-[#222] rounded-2xl overflow-hidden hover:border-[#58b4e6]/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(88,180,230,0.06)]">
+              <div
+                className="group overflow-hidden transition-all duration-300"
+                style={{
+                  backgroundColor: "#141414",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: 20,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                }}
+              >
                 {/* Image placeholder area */}
-                <div className="h-48 bg-[#1a1a1a] flex items-center justify-center border-b border-[#222]">
+                <div
+                  className="h-48 flex items-center justify-center"
+                  style={{ backgroundColor: "#1a1a1a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+                >
                   {service.icon}
                 </div>
                 <div className="p-8">
@@ -239,7 +291,7 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-[120px] md:py-[140px] px-6 border-t border-[#1a1a1a]">
+    <section id="how-it-works" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
       <div className="max-w-6xl mx-auto">
         <FadeUp>
           <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] text-center mb-5">
@@ -254,14 +306,28 @@ function HowItWorks() {
 
         <div className="relative">
           {/* Connecting line (desktop only) */}
-          <div className="hidden md:block absolute top-[28px] left-[calc(16.666%+28px)] right-[calc(16.666%+28px)] h-px bg-[#222]" />
+          <div
+            className="hidden md:block absolute"
+            style={{
+              top: 28,
+              left: "calc(16.666% + 28px)",
+              right: "calc(16.666% + 28px)",
+              height: 1,
+              backgroundColor: "rgba(255,255,255,0.08)",
+            }}
+          />
 
           <div className="grid md:grid-cols-3 gap-16 md:gap-8">
             {steps.map((step, i) => (
               <FadeUp key={step.number} delay={0.12 * (i + 1)}>
                 <div className="text-center">
-                  {/* Numbered circle */}
-                  <div className="relative z-10 w-14 h-14 rounded-full border-2 border-[#58b4e6] flex items-center justify-center mx-auto mb-8 bg-[#0a0a0a]">
+                  <div
+                    className="relative z-10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-8"
+                    style={{
+                      border: "2px solid #58b4e6",
+                      backgroundColor: "#0a0a0a",
+                    }}
+                  >
                     <span className="font-[family-name:var(--font-playfair)] text-lg text-[#58b4e6]">
                       {step.number}
                     </span>
@@ -283,11 +349,11 @@ function HowItWorks() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Why Refresh (About)                                                */
+/*  Why Refresh (About) — NO stats section                             */
 /* ------------------------------------------------------------------ */
 function WhyRefresh() {
   return (
-    <section id="about" className="py-[120px] md:py-[140px] px-6 border-t border-[#1a1a1a]">
+    <section id="about" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
       <div className="max-w-3xl mx-auto text-center">
         <FadeUp>
           <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] mb-5">
@@ -309,31 +375,11 @@ function WhyRefresh() {
           </p>
         </FadeUp>
         <FadeUp delay={0.3}>
-          <p className="text-lg text-[#999] leading-[1.8] mb-16">
+          <p className="text-lg text-[#999] leading-[1.8]">
             Based in Chattanooga, TN, we take pride in treating every vehicle
             like it&apos;s our own. From a daily commuter that needs some love to
             an RV getting prepped for the season — we&apos;ve got you covered.
           </p>
-        </FadeUp>
-
-        <FadeUp delay={0.4}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-10 border-t border-[#1a1a1a]">
-            {[
-              { stat: "500+", label: "Vehicles Detailed" },
-              { stat: "5★", label: "Average Rating" },
-              { stat: "100%", label: "Mobile Service" },
-              { stat: "Same Day", label: "Availability" },
-            ].map((item) => (
-              <div key={item.label} className="py-4">
-                <p className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#58b4e6] mb-2">
-                  {item.stat}
-                </p>
-                <p className="text-[13px] text-[#666] tracking-wide">
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </div>
         </FadeUp>
       </div>
     </section>
@@ -389,17 +435,33 @@ function Contact() {
     }
   };
 
-  const inputClasses =
-    "w-full bg-[#141414] border border-[#222] px-5 py-3.5 text-white text-[15px] placeholder-[#555] focus:outline-none focus:border-[#58b4e6]/60 focus:ring-1 focus:ring-[#58b4e6]/30 transition-all duration-200";
-  const inputRadius = { borderRadius: 14 };
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    backgroundColor: "#141414",
+    border: "1px solid rgba(255,255,255,0.08)",
+    borderRadius: 12,
+    padding: "14px 16px",
+    color: "#f5f5f7",
+    fontSize: 15,
+    outline: "none",
+    transition: "border-color 0.2s",
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    e.currentTarget.style.borderColor = "#58b4e6";
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+  };
 
   if (status === "success") {
     return (
-      <section id="contact" className="py-[120px] md:py-[140px] px-6 border-t border-[#1a1a1a]">
+      <section id="contact" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
         <div className="max-w-xl mx-auto text-center">
           <FadeUp>
-            <div className="bg-[#141414] border border-[#222] rounded-2xl p-16">
-              <div className="w-16 h-16 bg-[#58b4e6]/10 rounded-full flex items-center justify-center mx-auto mb-8">
+            <div style={{ backgroundColor: "#141414", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: 64 }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8" style={{ backgroundColor: "rgba(88,180,230,0.1)" }}>
                 <svg className="w-8 h-8 text-[#58b4e6]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                 </svg>
@@ -413,8 +475,13 @@ function Contact() {
               </p>
               <a
                 href="tel:4239334784"
-                className="inline-flex items-center justify-center border border-white/15 text-white px-8 py-3.5 font-medium hover:bg-white/[0.05] transition-colors duration-200"
-                style={{ borderRadius: 980 }}
+                className="inline-flex items-center justify-center font-medium text-[#58b4e6] transition-opacity duration-200 hover:opacity-[0.7]"
+                style={{
+                  border: "1px solid #58b4e6",
+                  borderRadius: 980,
+                  padding: "14px 28px",
+                  backgroundColor: "transparent",
+                }}
               >
                 (423) 933-4784
               </a>
@@ -426,7 +493,7 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="py-[120px] md:py-[140px] px-6 border-t border-[#1a1a1a]">
+    <section id="contact" className="px-6" style={{ padding: "120px 24px", backgroundColor: "#0a0a0a" }}>
       <div className="max-w-2xl mx-auto">
         <FadeUp>
           <p className="text-[13px] tracking-[0.3em] uppercase text-[#58b4e6] text-center mb-5">
@@ -459,8 +526,9 @@ function Contact() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className={inputClasses}
-                style={inputRadius}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                style={inputStyle}
               />
               <input
                 type="tel"
@@ -469,8 +537,9 @@ function Contact() {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                className={inputClasses}
-                style={inputRadius}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                style={inputStyle}
               />
             </div>
 
@@ -480,8 +549,9 @@ function Contact() {
                 required
                 value={formData.vehicle_type}
                 onChange={handleChange}
-                className={`${inputClasses} ${!formData.vehicle_type ? "text-[#555]" : ""}`}
-                style={inputRadius}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                style={{ ...inputStyle, color: formData.vehicle_type ? "#f5f5f7" : "#555" }}
               >
                 <option value="" disabled>Vehicle Type</option>
                 <option value="Sedan">Sedan</option>
@@ -494,8 +564,9 @@ function Contact() {
                 required
                 value={formData.service}
                 onChange={handleChange}
-                className={`${inputClasses} ${!formData.service ? "text-[#555]" : ""}`}
-                style={inputRadius}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                style={{ ...inputStyle, color: formData.service ? "#f5f5f7" : "#555" }}
               >
                 <option value="" disabled>Service Needed</option>
                 <option value="Full Detail">Full Detail</option>
@@ -512,8 +583,9 @@ function Contact() {
               required
               value={formData.address}
               onChange={handleChange}
-              className={inputClasses}
-              style={inputRadius}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              style={inputStyle}
             />
 
             <textarea
@@ -522,15 +594,23 @@ function Contact() {
               rows={4}
               value={formData.notes}
               onChange={handleChange}
-              className={`${inputClasses} resize-none`}
-              style={inputRadius}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              style={{ ...inputStyle, resize: "none" as const }}
             />
 
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="w-full bg-[#58b4e6] text-[#0a0a0a] py-4 font-semibold text-[15px] hover:bg-[#3a8fbf] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
-              style={{ borderRadius: 980 }}
+              className="w-full font-semibold text-[15px] transition-opacity duration-200 hover:opacity-[0.88] disabled:opacity-60 disabled:cursor-not-allowed"
+              style={{
+                backgroundColor: "#f5f5f7",
+                color: "#0a0a0a",
+                borderRadius: 980,
+                padding: "18px 36px",
+                border: "none",
+                cursor: "pointer",
+              }}
             >
               {status === "submitting" ? "Sending..." : "Request a Quote"}
             </button>
@@ -552,7 +632,7 @@ function Contact() {
 /* ------------------------------------------------------------------ */
 function Footer() {
   return (
-    <footer className="border-t border-[#1a1a1a] py-16 px-6">
+    <footer className="py-16 px-6" style={{ backgroundColor: "#0a0a0a" }}>
       <div className="max-w-6xl mx-auto text-center">
         <p className="font-[family-name:var(--font-playfair)] text-lg tracking-[0.06em] uppercase mb-3">
           Refresh
@@ -577,10 +657,15 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <Divider />
         <Services />
+        <Divider />
         <HowItWorks />
+        <Divider />
         <WhyRefresh />
+        <Divider />
         <Contact />
+        <Divider />
       </main>
       <Footer />
     </>
