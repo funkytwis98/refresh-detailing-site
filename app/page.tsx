@@ -395,7 +395,7 @@ function Contact() {
       const { error } = await supabase.from("inbox_items").insert({
         type: "website_form",
         source: "refresh-detailing-website",
-        client_id: "00000000-0000-0000-0000-000000000000", // placeholder — replace with real client ID
+        client_id: "c2000000-0000-0000-0000-000000000002",
         status: "new",
         content: JSON.stringify(formData),
         created_at: new Date().toISOString(),
