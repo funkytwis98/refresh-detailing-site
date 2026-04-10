@@ -282,7 +282,7 @@ function HowItWorks() {
 function WhyRefresh() {
   return (
     <section id="about" style={{ padding: "120px 0", background: "#0a0a0a", textAlign: "center" }}>
-      <div className={WRAP} style={{ maxWidth: 800 }}>
+      <div style={{ maxWidth: 800, marginLeft: "auto", marginRight: "auto", paddingLeft: 24, paddingRight: 24, textAlign: "center" }}>
         <SectionLabel>About</SectionLabel>
         <SectionTitle>Why Refresh?</SectionTitle>
         <FadeUp delay={0.2}>
