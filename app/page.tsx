@@ -218,7 +218,7 @@ function ServiceCard({ svc, i }: { svc: typeof svcData[0]; i: number }) {
 function Services() {
   return (
     <section id="services" style={{ padding: "120px 0", background: "#0a0a0a" }}>
-      <div className={WRAP}>
+      <div style={{ maxWidth: 1200, marginLeft: "auto", marginRight: "auto", paddingLeft: 40, paddingRight: 40 }}>
         <SectionLabel>What We Do</SectionLabel>
         <SectionTitle>Precision detailing for every vehicle.</SectionTitle>
         <SectionDesc>Whether it&apos;s your daily driver, weekend boat, or cross-country RV — we bring the detail to you with premium products and professional equipment.</SectionDesc>
@@ -333,7 +333,7 @@ function Contact() {
   if (status === "success") {
     return (
       <section id="contact" style={{ padding: "120px 0 160px", background: "#0a0a0a", textAlign: "center" }}>
-        <div className={WRAP} style={{ maxWidth: 640 }}>
+        <div style={{ maxWidth: 640, marginLeft: "auto", marginRight: "auto", paddingLeft: 24, paddingRight: 24 }}>
           <FadeUp>
             <div style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "64px 40px" }}>
               <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(88,180,230,0.1)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px" }}>
@@ -353,7 +353,7 @@ function Contact() {
 
   return (
     <section id="contact" style={{ padding: "120px 0 160px", background: "#0a0a0a", textAlign: "center" }}>
-      <div className={WRAP} style={{ maxWidth: 640 }}>
+      <div style={{ maxWidth: 640, marginLeft: "auto", marginRight: "auto", paddingLeft: 24, paddingRight: 24 }}>
         <SectionLabel>Get Started</SectionLabel>
         <SectionTitle>Book your detail.</SectionTitle>
         <FadeUp delay={0.2}>
